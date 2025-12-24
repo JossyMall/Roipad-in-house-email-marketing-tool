@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation: MarketingLeads Tool v2</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f0; /* Clean beige background */
+            --content-bg: #ffffff;
+            --text-primary: #2c2c2c;
+            --text-secondary: #595959;
+            --accent-color: #d4a373; /* Earthy tone */
+            --code-bg: #f4f4f4;
+            --border-color: #e0e0e0;
+            --spacing-unit: 1.5rem;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        header {
+            background-color: var(--content-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        article {
+            background: var(--content-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-color);
+            color: #1a1a1a;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-color);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .feature-card {
+            background-color: var(--bg-color);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>MarketingLeads</h1>
+            <p class="subtitle">Advanced Email Marketing, Resource Delivery & Embeddable Forms</p>
+            <p class="subtitle">Technical Specification v2.0</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <p>
+                <strong>Status:</strong> <span class="tag">Updated Spec</span> <span class="tag">PHP 8.3</span> <span class="tag">Embed SDK</span>
+            </p>
+            <p>This document outlines the complete architecture for MarketingLeads, a PHP-based tool designed to convert visitors into leads via resource downloads and waitlist forms.</p>
+            <p><strong>v2.0 Updates:</strong> Upgraded to PHP 8.3 and introduced a JavaScript Embed SDK allowing forms to be hosted on third-party websites while maintaining the tool's analytics and scoring capabilities.</p>
+
+            <h2>1. Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">Project Overview</a></li>
+                <li><a href="#features">Core Features</a></li>
+                <li><a href="#tech-stack">Technology Stack</a></li>
+                <li><a href="#architecture">System Architecture</a></li>
+                <li><a href="#database-schema">Database Schema</a></li>
+                <li><a href="#user-flow">User Journey & Logic Flow</a></li>
+                <li><a href="#embed-feature">JavaScript Embed SDK (New)</a></li>
+                <li><a href="#admin-panel">Admin Panel Capabilities</a></li>
+                <li><a href="#analytics">Analytics & Reporting</a></li>
+                <li><a href="#security">Security & Best Practices</a></li>
+            </ul>
+
+            <h2 id="overview">2. Project Overview</h2>
+            <p>MarketingLeads is a self-hosted application enabling marketing teams to gate digital resources (PDFs, Tools) behind an email capture form. It extends functionality by allowing these forms to be embedded on external sites (e.g., WordPress, custom landing pages) via a simple JavaScript snippet.</p>
+            <p>Key components include lead scoring, behavioral segmentation, automated SMTP delivery, and deep analytics tracking views, opens, and downloads.</p>
+
+            <h2 id="features">3. Core Features</h2>
+            <div class="feature-card">
+                <h3>Multi-Platform Deployment</h3>
+                <p>Resources can be hosted on the platform's native "Product Page" OR embedded on external websites using the JS SDK. Logic remains identical.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Resource & Waitlist Management</h3>
+                <p>Upload files for download or create "Waitlist Only" forms. Supports customizing form fields (Email only vs Email + Name).</p>
+            </div>
+            <div class="feature-card">
+                <h3>Clean "Beige" Product Pages</h3>
+                <p>Native product pages feature a minimalist, beige-themed design, showcasing titles, reviews, and descriptions.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Lead Scoring Engine</h3>
+                <p>Dynamic scoring system: Page View (+1), Submit (+5), Email Open (+2), Download (+10). Configurable by Admin.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Segmentation</h3>
+                <p>Users are automatically assigned to specific segments upon interacting with a resource.</p>
+            </div>
+            <div class="feature-card">
+                <h3>SMTP Automation</h3>
+                <p>Uses PHPMailer (via Composer) to send templated emails. Supports a tracking pixel for open analytics.</p>
+            </div>
+
+            <h2 id="tech-stack">4. Technology Stack</h2>
+            <ul>
+                <li><strong>Backend:</strong> PHP 8.3 (Latest Stable). utilizing modern features (Typed properties, Constructor property promotion).</li>
+                <li><strong>Database:</strong> MySQL 8.0+ / MariaDB.</li>
+                <li><strong>Frontend:</strong> HTML5, CSS3 (Flexbox/Grid), Vanilla JavaScript (ES6+).</li>
+                <li><strong>Libraries:</strong>
+                    <ul>
+                        <li><code>phpmailer/phpmailer</code>: Email delivery.</li>
+                        <li><code>vlucas/phpdotenv</code>: Environment configuration.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2 id="architecture">5. System Architecture</h2>
+            <pre><code>/marketing-leads
+├── .env                  # SMTP, DB Keys, App URL
+├── config.php            # Bootstrap & Constants
+├── composer.json         # Dependencies
+├── assets/
+│   ├── css/
+│   │   └── style.css     # Beige theme styles
+│   └── js/
+│       └── embed.js      # SDK for external sites (New)
+├── templates/            # HTML Email Templates
+├── uploads/              # Secure file storage
+├── admin/                # Dashboard protected area
+├── public/
+│   ├── view.php          # Native Product Page
+│   ├── download.php      # File handler + Scoring logic
+│   ├── api/
+│   │   └── submit.php    # AJAX/POST endpoint for forms
+│   └── embed-render.php  # Generates the iframe content for JS SDK
+└── index.php             # Router</code></pre>
+
+            <h2 id="database-schema">6. Database Schema</h2>
+            <p>Note: Schema supports both native and embedded flows.</p>
+
+            <h3>6.1. Users (Leads)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>id</code></td><td>INT (PK)</td><td>Unique User ID</td></tr>
+                    <tr><td><code>email</code></td><td>VARCHAR(255)</td><td>Unique Email</td></tr>
+                    <tr><td><code>first_name</code></td><td>VARCHAR(100)</td><td>Optional</td></tr>
+                    <tr><td><code>score</code></td><td>INT</td><td>Lead Score</td></tr>
+                    <tr><td><code>created_at</code></td><td>DATETIME</td><td>Entry Date</td></tr>
+                </tbody>
+            </table>
+
+            <h3>6.2. Products</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>id</code></td><td>INT (PK)</td><td>Product ID</td></tr>
+                    <tr><td><code>slug</code></td><td>VARCHAR(50)</td><td>URL ID (used in embed code)</td></tr>
+                    <tr><td><code>title</code></td><td>VARCHAR(255)</td><td>Product Name</td></tr>
+                    <tr><td><code>is_waitlist</code></td><td>BOOLEAN</td><td>True = No file download, just list add</td></tr>
+                    <tr><td><code>file_path</code></td><td>VARCHAR(255)</td><td>Nullable</td></tr>
+                    <tr><td><code>require_first_name</code></td><td>BOOLEAN</td><td>Form Config</td></tr>
+                    <tr><td><code>segment_id</code></td><td>INT</td><td>FK to Segments</td></tr>
+                </tbody>
+            </table>
+
+            <h3>6.3. Analytics (Logs)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>id</code></td><td>INT (PK)</td><td>Log ID</td></tr>
+                    <tr><td><code>product_id</code></td><td>INT</td><td>Associated Resource</td></tr>
+                    <tr><td><code>user_id</code></td><td>INT</td><td>User (Nullable for views)</td></tr>
+                    <tr><td><code>event_type</code></td><td>ENUM</td><td><code>view</code>, <code>submit</code>, <code>open</code>, <code>download</code></td></tr>
+                    <tr><td><code>source</code></td><td>ENUM</td><td><code>native</code> vs <code>embed</code></td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="user-flow">7. User Journey & Logic Flow</h2>
+            <p>The system supports two distinct entry points: Native Hosted Page and External Embed.</p>
+
+            <h3>7.1. Native Page Flow</h3>
+            <ol>
+                <li>Visitor accesses <code>site.com/view/slug</code>.</li>
+                <li>System logs 'view' (Source: native).</li>
+                <li>Page renders Beige theme.</li>
+                <li>User clicks Download -> Modal Form -> Submit.</li>
+                <li>Backend validates, creates/updates User, assigns Score, adds to Segment.</li>
+                <li>Redirect to Thank You page + Send Email.</li>
+            </ol>
+
+            <h3>7.2. External Embed Flow (New)</h3>
+            <ol>
+                <li>Webmaster places <code>&lt;script src="site.com/assets/js/embed.js" data-slug="ebook-2023"&gt;&lt;/script&gt;</code> on their site.</li>
+                <li><code>embed.js</code> creates an Iframe pointing to <code>site.com/public/embed-render.php?slug=ebook-2023</code>.</li>
+                <li>The Iframe loads the specific form design.</li>
+                <li>User fills form inside Iframe -> Submit.</li>
+                <li>Form POSTs to <code>site.com/public/api/submit.php</code>.</li>
+                <li>Backend processes data (identical logic to native).</li>
+                <li>Iframe content updates to "Check your inbox" (AJAX response updates DOM or Iframe reloads).</li>
+                <li>Email sent with resource link.</li>
+            </ol>
+
+            <h2 id="embed-feature">8. JavaScript Embed SDK (New)</h2>
+            <div class="warning">
+                <strong>Note:</strong> The SDK must be CSS-isolated to ensure the external site's styles don't break the form, and vice-versa.
+            </div>
+            <p>To allow external embedding, we will implement a lightweight JavaScript SDK.</p>
+            <ul>
+                <li><strong>Script Loading:</strong> The external site includes the script with a data attribute referencing the Product Slug.</li>
+                <li><strong>DOM Injection:</strong> The script injects a container and an <code>&lt;iframe&gt;</code> into the host page.</li>
+                <li><strong>Responsiveness:</strong> The iframe will resize automatically based on content height using <code>postMessage</code> communication between the child (our tool) and parent (external site).</li>
+                <li><strong>Origin Security:</strong> The backend will check the <code>HTTP_ORIGIN</code> or <code>HTTP_REFERER</code> (if possible, though unreliable) against a whitelist of allowed domains configured in the Admin panel to prevent abuse.</li>
+            </ul>
+
+            <h2 id="admin-panel">9. Admin Panel Capabilities</h2>
+            <ul>
+                <li><strong>Dashboard:</strong> High-level stats (Total leads, top performing resources).</li>
+                <li><strong>Product/Resource Manager:</strong>
+                    <ul>
+                        <li>Upload files / Edit details.</li>
+                        <li>Toggle "First Name" requirement.</li>
+                        <li>Assign Segments.</li>
+                        <li><strong>Get Embed Code:</strong> A button that generates the JS snippet for the current resource.</li>
+                    </ul>
+                </li>
+                <li><strong>Waitlist Manager:</strong>
+                    <ul>
+                        <li>Create products without files.</li>
+                        <li>Configure specific "Welcome" emails.</li>
+                    </ul>
+                </li>
+                <li><strong>Configuration:</strong>
+                    <ul>
+                        <li>Set Score values per action.</li>
+                        <li>Manage Allowed Domains for Embeds (Security).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2 id="analytics">10. Analytics & Reporting</h2>
+            <p>The analytics page will segment data based on the <code>source</code> column (Native vs. Embed) to see where conversions are coming from.</p>
+            <ul>
+                <li><strong>Funnel:</strong> Views (Native + Embed) -> Submits -> Downloads.</li>
+                <li><strong>Open Rate:</strong> Tracking pixel in email footer.</li>
+                <li><strong>Lead Score Leaderboard:</strong> Identify top engaged users.</li>
+            </ul>
+
+            <h2 id="security">11. Security & Best Practices</h2>
+            <ul>
+                <li><strong>CSRF:</strong> All form submissions require a valid CSRF token.</li>
+                <li><strong>XSS Protection:</strong> Input sanitization for names/descriptions.</li>
+                <li><strong>SQL Injection:</strong> PDO Prepared Statements exclusively.</li>
+                <li><strong>File Security:</strong>
+                    <ul>
+                        <li>Rename files on upload (UUID generation).</li>
+                        <li>Store outside webroot or protect via <code>.htaccess</code> rules forcing downloads through <code>download.php</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>Embed Security (CORS/Frame-Options):</strong>
+                    <ul>
+                        <li>Admin can whitelist domains allowed to embed forms.</li>
+                        <li>Set <code>X-Frame-Options: ALLOW-FROM https://allowed-site.com</code> dynamically if needed, or rely on session checks inside the iframe to prevent direct hotlinking of the form URL.</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </article>
+
+        <footer>
+            <p>Generated for MarketingLeads Project • Documentation Phase v2.0</p>
+        </footer>
+    </main>
+
+</body>
+</html>
